@@ -4,7 +4,9 @@
       class="bg-gray-900 flex flex-col shadow-xl p-4 rounded-xl w-2/5 text-white"
       @submit.prevent="login"
     >
-      <h1 class="text-3xl text-center my-2">Login</h1>
+      <h1 class="text-3xl text-center my-2">
+        Login
+      </h1>
       <label for="email" class="text-xl my-2">Email: </label>
       <input
         id="email"
@@ -36,7 +38,6 @@ export default {
   },
   methods: {
     login () {
-      console.log(this.email, this.password)
       this.email = ''
       this.password = ''
     }

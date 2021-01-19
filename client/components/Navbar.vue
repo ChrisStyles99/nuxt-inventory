@@ -7,10 +7,9 @@
     </h1>
     <ul class="flex flex-row">
       <li class="nav-link">
-        <nuxt-link class="nav-anchor" to="/login">Login</nuxt-link>
-      </li>
-      <li class="nav-link">
-        <nuxt-link class="nav-anchor" to="/register">Register</nuxt-link>
+        <nuxt-link class="nav-anchor" to="/login">
+          Login
+        </nuxt-link>
       </li>
     </ul>
   </nav>

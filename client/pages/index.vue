@@ -1,11 +1,22 @@
 <template>
   <div class="container mx-auto">
-    <h1 class="text-3xl">Inventory items</h1>
+    <h1 class="text-3xl text-center mt-2">
+      Inventory items
+    </h1>
+    <div class="grid grid-cols-4 gap-1 mt-2">
+      <ItemCard />
+    </div>
   </div>
 </template>
 
 <script>
-export default {}
+import ItemCard from '@/components/ItemCard.vue'
+
+export default {
+  components: {
+    ItemCard
+  }
+}
 </script>
 
 <style>

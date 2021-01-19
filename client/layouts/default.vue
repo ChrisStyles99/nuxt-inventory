@@ -9,10 +9,8 @@
 import Navbar from '@/components/Navbar.vue'
 
 export default {
-  setup () {
-    return {
-      Navbar
-    }
+  components: {
+    Navbar
   }
 }
 </script>
