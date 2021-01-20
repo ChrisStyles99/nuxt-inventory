@@ -1,6 +1,6 @@
 <template>
-  <div class="container mx-auto">
-    <h1 class="text-3xl text-center mt-2">
+  <div class="container mx-auto min-h-screen index">
+    <h1 class="text-3xl text-center mt-2 text-white">
       Inventory items
     </h1>
     <div class="grid grid-cols-4 gap-1 mt-2">
@@ -20,9 +20,15 @@ export default {
 </script>
 
 <style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
+.index::after {
+  content: '';
+  position: absolute;
+  top: -150px;
+  left: 0;
+  background-color: #242935;
+  width: 100%;
+  height: 75%;
+  z-index: -1;
+  transform: skewY(-12deg);
 }
-*/
 </style>

@@ -29,6 +29,6 @@ export default {}
   }
 
   .nav-anchor:hover {
-    @apply bg-green-800;
+    @apply bg-gray-500;
   }
 </style>
