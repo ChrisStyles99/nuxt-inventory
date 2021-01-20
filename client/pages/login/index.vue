@@ -1,5 +1,8 @@
 <template>
   <div class="container mx-auto h-screen flex justify-center items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="#111827" fill-opacity="1" d="M0,256L80,224C160,192,320,128,480,112C640,96,800,128,960,138.7C1120,149,1280,139,1360,133.3L1440,128L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z" />
+    </svg>
     <form
       class="bg-gray-900 flex flex-col shadow-xl p-4 rounded-xl w-2/5 text-white"
       @submit.prevent="login"
@@ -45,4 +48,9 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+  svg {
+    position: absolute;
+    top: 80px;
+  }
+</style>

@@ -13,19 +13,33 @@
       </p>
     </div>
     <div class="mx-auto">
-      <button class="p-3 bg-blue-600 text-lg text-white mr-2">
+      <nuxt-link to="/product/edit/1" class="p-3 bg-blue-600 text-lg text-white mr-2">
         Edit Product
-      </button>
-      <button class="p-3 bg-red-600 text-lg text-white ml-2">
+      </nuxt-link>
+      <button class="p-3 bg-red-600 text-lg text-white ml-2" @click="activeModal = true">
         Delete Product
       </button>
+      <DeleteModal v-if="activeModal" @hide-modal="activeModal = false" />
     </div>
   </div>
 </template>
 
 <script>
+import DeleteModal from '@/components/DeleteModal.vue'
 export default {
-
+  components: {
+    DeleteModal
+  },
+  data () {
+    return {
+      activeModal: false
+    }
+  }
+  // methods: {
+  //   hideModal () {
+  //     this.activeModal = false
+  //   }
+  // }
 }
 </script>
 
