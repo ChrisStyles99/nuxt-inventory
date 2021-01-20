@@ -11,6 +11,11 @@
           Login
         </nuxt-link>
       </li>
+      <li class="nav-link">
+        <nuxt-link class="nav-anchor" to="/product/add">
+          Add product
+        </nuxt-link>
+      </li>
     </ul>
   </nav>
 </template>
