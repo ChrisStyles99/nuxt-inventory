@@ -39,4 +39,13 @@ productsController.editProduct = (req, res) => {
   });
 }
 
+productsController.deleteProduct = (req, res) => {
+  const {id} = req.params;
+  connection.execute('DELETE FROM products WHERE id = ?', [id], (err, result) => {
+    if(err) return res.json({error: true, msg: err});
+
+    res.json({error: false, msg: 'Deleted product successfully'});
+  });
+}
+
 module.exports = productsController;
