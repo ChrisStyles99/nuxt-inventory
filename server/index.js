@@ -14,6 +14,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 // Routes
+app.use('/api/users', require('./routes/users'));
 app.use('/api/products', require('./routes/products'));
 
 app.listen(PORT, () => {
