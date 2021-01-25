@@ -6,16 +6,18 @@
       </nuxt-link>
     </h1>
     <ul class="flex flex-row">
-      <li class="nav-link">
-        <nuxt-link v-if="!isLoggedIn" class="nav-anchor" to="/login">
-          Login
-        </nuxt-link>
-      </li>
-      <li class="nav-link">
-        <nuxt-link v-if="isLoggedIn" class="nav-anchor" to="/product/add">
-          Add product
-        </nuxt-link>
-      </li>
+      <client-only>
+        <li class="nav-link">
+          <nuxt-link v-if="!isLoggedIn" class="nav-anchor" to="/login">
+            Login
+          </nuxt-link>
+        </li>
+        <li class="nav-link">
+          <nuxt-link v-if="isLoggedIn" class="nav-anchor" to="/product/add">
+            Add product
+          </nuxt-link>
+        </li>
+      </client-only>
     </ul>
   </nav>
 </template>

@@ -3,9 +3,11 @@
     <h1 class="text-3xl text-center mt-2 text-white">
       Inventory items
     </h1>
-    <div class="grid grid-cols-4 gap-1 mt-2">
-      <ItemCard />
-    </div>
+    <client-only>
+      <div class="grid grid-cols-4 gap-1 mt-2">
+        <ItemCard v-for="product in products" :key="product.id" :product="product" />
+      </div>
+    </client-only>
   </div>
 </template>
 
@@ -16,7 +18,15 @@ export default {
   components: {
     ItemCard
   },
-  middleware: 'auth'
+  middleware: 'auth',
+  computed: {
+    products () {
+      return this.$store.state.products
+    }
+  },
+  created () {
+    this.$store.dispatch('getProducts')
+  }
 }
 </script>
 
