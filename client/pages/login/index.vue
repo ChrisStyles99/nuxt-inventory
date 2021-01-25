@@ -7,6 +7,9 @@
       class="bg-gray-900 flex flex-col shadow-xl p-4 rounded-xl w-2/5 text-white z-50"
       @submit.prevent="loginUser"
     >
+      <p>
+        {{ loginError }}
+      </p>
       <h1 class="text-3xl text-center my-2">
         Login
       </h1>

@@ -1,19 +1,19 @@
 <template>
   <div class="product h-screen grid grid-cols-2 grid-rows-2">
-    <img src="https://via.placeholder.com/500x400" alt="Image" class="row-span-2 m-auto">
+    <img :src="product.image_url" alt="Image" class="row-span-2 m-auto w-2/4 object-cover">
     <div class="m-auto">
       <h1 class="text-center text-4xl my-2">
-        Quantity
+        {{ product.name }}
       </h1>
       <p class="text-xl my-2">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi perspiciatis dolor ipsum cumque sint aliquam aperiam doloremque illo, harum unde!
+        {{ product.description }}
       </p>
       <p class="text-lg my-2">
-        Quantity: 10
+        Quantity: {{ product.quantity }}
       </p>
     </div>
     <div class="mx-auto">
-      <nuxt-link to="/product/edit/1" class="p-3 bg-blue-600 text-lg text-white mr-2">
+      <nuxt-link :to="`/product/edit/${product.id}`" class="p-3 bg-blue-600 text-lg text-white mr-2">
         Edit Product
       </nuxt-link>
       <button class="p-3 bg-red-600 text-lg text-white ml-2" @click="activeModal = true">
@@ -35,6 +35,15 @@ export default {
     return {
       activeModal: false
     }
+  },
+  computed: {
+    product () {
+      return this.$store.state.product
+    }
+  },
+  created () {
+    this.$store.dispatch('getSingleProduct', this.$route.params.id)
+    console.log(this.$store.state.product)
   }
   // methods: {
   //   hideModal () {
