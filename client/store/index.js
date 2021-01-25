@@ -3,7 +3,7 @@ const baseUrl = 'http://localhost:3001/api'
 let isLoggedInToken = false
 
 if (process.client) {
-  isLoggedInToken = window.document.cookie.includes('isLoggedIn=')
+  isLoggedInToken = window.document.cookie.includes('isLoggedIn=true')
 }
 
 export const state = () => ({
@@ -29,7 +29,6 @@ export const mutations = {
 export const actions = {
   async login ({ commit }, data) {
     const res = await this.$axios.post(`${baseUrl}/users/login`, data, { withCredentials: true })
-    console.log(res.data)
 
     if (res.data.error) {
       return commit('login_error', res.data.msg)

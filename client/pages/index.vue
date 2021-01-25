@@ -15,7 +15,8 @@ import ItemCard from '@/components/ItemCard.vue'
 export default {
   components: {
     ItemCard
-  }
+  },
+  middleware: 'auth'
 }
 </script>
 

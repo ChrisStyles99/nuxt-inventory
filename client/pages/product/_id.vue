@@ -30,6 +30,7 @@ export default {
   components: {
     DeleteModal
   },
+  middleware: 'auth',
   data () {
     return {
       activeModal: false
