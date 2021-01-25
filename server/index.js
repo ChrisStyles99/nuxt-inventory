@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3001;
 
 // Middlewares
 app.use(cors({
-  origin: 'http://localhost:3000/',
+  origin: 'http://localhost:3000',
   credentials: true
 }));
 app.use(express.urlencoded({extended: false}));

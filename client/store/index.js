@@ -1,35 +1,40 @@
-import axios from '@nuxtjs/axios'
 const baseUrl = 'http://localhost:3001/api'
 
+let isLoggedInToken = false
+
+if (process.client) {
+  isLoggedInToken = window.document.cookie.includes('isLoggedIn=')
+}
+
 export const state = () => ({
-  isLoggedIn: document.cookie.includes('isLoggedIn=') || false,
+  isLoggedIn: isLoggedInToken,
   items: [],
-  user: {},
   item: {},
   loginError: null
 })
 
-export const getters = () => ({
+export const getters = {
   loginError: state => state.loginError
-})
+}
 
-export const mutations = () => ({
+export const mutations = {
   login_error (state, data) {
     state.loginError = data
   },
-  login (state, user) {
-    state.user = user
+  login_success (state) {
+    state.isLoggedIn = true
   }
-})
+}
 
-export const actions = () => ({
+export const actions = {
   async login ({ commit }, data) {
-    const res = await axios.post(`${baseUrl}/users/login`, data)
+    const res = await this.$axios.post(`${baseUrl}/users/login`, data, { withCredentials: true })
+    console.log(res.data)
 
     if (res.data.error) {
       return commit('login_error', res.data.msg)
     }
 
-    commit('login', res.data.user)
+    commit('login_success')
   }
-})
+}
