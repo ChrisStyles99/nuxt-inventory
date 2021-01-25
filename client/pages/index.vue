@@ -4,6 +4,7 @@
       Inventory items
     </h1>
     <client-only>
+      <p>{{ productsError }}</p>
       <div class="grid grid-cols-4 gap-1 mt-2">
         <ItemCard v-for="product in products" :key="product.id" :product="product" />
       </div>
@@ -22,6 +23,9 @@ export default {
   computed: {
     products () {
       return this.$store.state.products
+    },
+    productsError () {
+      return this.$store.state.productsError
     }
   },
   created () {

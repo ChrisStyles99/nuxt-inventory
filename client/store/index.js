@@ -9,7 +9,8 @@ export const state = () => ({
 })
 
 export const getters = {
-  loginError: state => state.loginError
+  loginError: state => state.loginError,
+  product: state => state.product
 }
 
 export const mutations = {
@@ -53,8 +54,16 @@ export const actions = {
   async getSingleProduct ({ commit }, id) {
     const res = await this.$axios.get(`${baseUrl}/products/${id}`, { withCredentials: true })
     if (res.data.error) {
-      return commit('get_single_product_error', res.data.error)
+      return commit('get_single_product_error', res.data.msg)
     }
     commit('get_single_product', res.data.product[0])
+  },
+  async updateProduct ({ commit }, { id, data }) {
+    console.log(data)
+    const res = await this.$axios.put(`${baseUrl}/products/edit/${id}`, data, { withCredentials: true })
+    if (res.data.error) {
+      return commit('get_single_product_error', res.data.msg)
+    }
+    commit('get_single_product', data)
   }
 }

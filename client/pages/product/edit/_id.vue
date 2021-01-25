@@ -1,6 +1,6 @@
 <template>
   <div class="edit-product h-screen grid grid-cols-2">
-    <form class="z-10 w-3/4 my-auto ml-10 border-2 bg-gray-900 grid grid-cols-2 text-white shadow-xl rounded-xl p-4">
+    <form class="z-10 w-3/4 my-auto ml-10 border-2 bg-gray-900 grid grid-cols-2 text-white shadow-xl rounded-xl p-4" @submit.prevent="updateProduct">
       <h1 class="text-4xl col-span-2 text-center">
         Edit product
       </h1>
@@ -33,13 +33,20 @@
 <script>
 export default {
   middleware: 'auth',
-  computed: {
-    product () {
-      return this.$store.state.product
+  data () {
+    return {
+      product: { ...this.$store.state.product }
     }
   },
   created () {
     this.$store.dispatch('getSingleProduct', this.$route.params.id)
+  },
+  methods: {
+    updateProduct () {
+      console.log(this.product)
+      this.$store.dispatch('updateProduct', { id: this.$route.params.id, data: this.product })
+      this.$router.push('/product/' + this.$route.params.id)
+    }
   }
 }
 </script>

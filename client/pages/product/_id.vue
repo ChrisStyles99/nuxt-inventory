@@ -11,6 +11,9 @@
       <p class="text-lg my-2">
         Quantity: {{ product.quantity }}
       </p>
+      <p>
+        Category {{ product.category }}
+      </p>
     </div>
     <div class="mx-auto">
       <nuxt-link :to="`/product/edit/${product.id}`" class="p-3 bg-blue-600 text-lg text-white mr-2">
@@ -43,7 +46,6 @@ export default {
   },
   created () {
     this.$store.dispatch('getSingleProduct', this.$route.params.id)
-    console.log(this.$store.state.product)
   }
   // methods: {
   //   hideModal () {

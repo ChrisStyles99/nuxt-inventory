@@ -22,7 +22,9 @@ productsController.getSingleProduct = (req, res) => {
 
 productsController.addProduct = (req, res) => {
   const {name, description, quantity, url} = req.body;
-  connection.execute('INSERT INTO products (name, description, quantity, image_url) VALUES (?, ?, ?, ?)', [name, description, quantity, url], (err, result) => {
+  const quantityInt = parseInt(quantity);
+  const category = 'To be rated';
+  connection.execute('INSERT INTO products (name, description, quantity, image_url, category) VALUES (?, ?, ?, ?, ?)', [name, description, quantityInt, url, category], (err, result) => {
     if(err) return res.json({error: true, msg: err});
 
     res.json({error: false, msg: 'Added new product'});
@@ -31,8 +33,12 @@ productsController.addProduct = (req, res) => {
 
 productsController.editProduct = (req, res) => {
   const {id} = req.params;
-  const {name, description, quantity, url} = req.body;
-  connection.execute('UPDATE products SET name = ?, description = ?, quantity = ?, image_url = ? WHERE id = ?', [name, description, quantity, url, id], (err, result) => {
+  const {name, description, quantity, image_url} = req.body;
+  let category = req.body.category;
+  category = 'To be rated';
+  const quantityInt = parseInt(quantity);
+  console.log(name, description, quantityInt, image_url, category, id);
+  connection.execute('UPDATE products SET name = ?, description = ?, quantity = ?, image_url = ?, category = ? WHERE id = ?', [name, description, quantityInt, image_url, category, id], (err, result) => {
     if(err) return res.json({error: true, msg: err});
 
     res.json({error: false, msg: 'Edited product successfully'});
