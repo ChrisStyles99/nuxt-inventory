@@ -1,5 +1,6 @@
 const connection = require('../database/db');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 usersController = {}
 
 usersController.login = (req, res) => {
@@ -15,7 +16,20 @@ usersController.login = (req, res) => {
     const validPassword = await bcrypt.compare(password, result[0].password);
 
     if(validPassword) {
-      res.json({error: false, msg: 'You are now logged in'});
+      const token = jwt.sign(result[0].id, process.env.SECRET, {
+        expiresIn: '1h'
+      });
+
+      res.cookie('token', token, {
+        maxAge: 3600000,
+        httpOnly: true
+      });
+
+      res.cookie('isLoggedIn', true, {
+        maxAge: 3600000
+      });
+
+      res.json({error: false, msg: 'You are now logged in!'});
     } else {
       res.json({error: true, msg: 'Password does not match'});
     }
