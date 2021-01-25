@@ -16,7 +16,10 @@ usersController.login = (req, res) => {
     const validPassword = await bcrypt.compare(password, result[0].password);
 
     if(validPassword) {
-      const token = jwt.sign(result[0].id, process.env.SECRET, {
+      const payload = {
+        id: result[0].id
+      }
+      const token = jwt.sign(payload, process.env.SECRET, {
         expiresIn: '1h'
       });
 

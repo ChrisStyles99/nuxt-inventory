@@ -6,6 +6,8 @@ if(process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
+const verifyToken = require('./middlewares/verifyToken');
+
 // Port
 const PORT = process.env.PORT || 3001;
 
@@ -20,7 +22,7 @@ app.use(cookieParser());
 
 // Routes
 app.use('/api/users', require('./routes/users'));
-app.use('/api/products', require('./routes/products'));
+app.use('/api/products', verifyToken, require('./routes/products'));
 
 app.listen(PORT, () => {
   console.log(`Server on port ${PORT}`);
