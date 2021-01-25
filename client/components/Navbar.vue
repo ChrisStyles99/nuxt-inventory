@@ -7,12 +7,12 @@
     </h1>
     <ul class="flex flex-row">
       <li class="nav-link">
-        <nuxt-link class="nav-anchor" to="/login">
+        <nuxt-link v-if="!isLoggedIn" class="nav-anchor" to="/login">
           Login
         </nuxt-link>
       </li>
       <li class="nav-link">
-        <nuxt-link class="nav-anchor" to="/product/add">
+        <nuxt-link v-if="isLoggedIn" class="nav-anchor" to="/product/add">
           Add product
         </nuxt-link>
       </li>
@@ -21,7 +21,17 @@
 </template>
 
 <script>
-export default {}
+export default {
+  computed: {
+    isLoggedIn () {
+      let loggedIn = false
+      if (process.client) {
+        loggedIn = window.document.cookie.includes('isLoggedIn=true')
+      }
+      return loggedIn
+    }
+  }
+}
 </script>
 
 <style scoped>

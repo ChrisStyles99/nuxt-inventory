@@ -1,13 +1,6 @@
 const baseUrl = 'http://localhost:3001/api'
 
-let isLoggedInToken = false
-
-if (process.client) {
-  isLoggedInToken = window.document.cookie.includes('isLoggedIn=true')
-}
-
 export const state = () => ({
-  isLoggedIn: isLoggedInToken,
   items: [],
   item: {},
   loginError: null
@@ -22,7 +15,7 @@ export const mutations = {
     state.loginError = data
   },
   login_success (state) {
-    state.isLoggedIn = true
+    state.loginError = null
   }
 }
 
