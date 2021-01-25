@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -39,8 +40,23 @@ export default {
       password: ''
     }
   },
+  computed: {
+    loginError () {
+      return this.$store.getters.loginError
+    }
+  },
   methods: {
+    ...mapActions(['login']),
     login () {
+      const data = {
+        email: this.email,
+        password: this.password
+      }
+      this.login(data)
+      if (this.loginError !== null) {
+        return
+      }
+      this.$router.push('/')
       this.email = ''
       this.password = ''
     }

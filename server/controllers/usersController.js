@@ -32,7 +32,7 @@ usersController.login = (req, res) => {
         maxAge: 3600000
       });
 
-      res.json({error: false, msg: 'You are now logged in!'});
+      res.json({error: false, msg: 'You are now logged in!', user: result[0]});
     } else {
       res.json({error: true, msg: 'Password does not match'});
     }
