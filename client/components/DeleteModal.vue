@@ -5,7 +5,7 @@
         Are you sure to delete?
       </h1>
       <div class="flex justify-around">
-        <button class="p-3 bg-red-600 text-lg text-white ml-2 rounded">
+        <button class="p-3 bg-red-600 text-lg text-white ml-2 rounded" @click="$emit('delete-product')">
           Delete
         </button>
         <button class="p-3 bg-blue-600 text-lg text-white mr-2 rounded" @click="$emit('hide-modal')">

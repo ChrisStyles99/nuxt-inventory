@@ -7,7 +7,9 @@ export const state = () => ({
   productsError: null,
   singleProductError: null,
   addProductError: null,
-  addProductMsg: null
+  addProductMsg: null,
+  deleteProductError: null,
+  deleteProductMsg: null
 })
 
 export const getters = {
@@ -39,17 +41,21 @@ export const mutations = {
   },
   add_product (state, msg) {
     state.addProductMsg = msg
+  },
+  delete_product_error (state, msg) {
+    state.deleteProductError = msg
+  },
+  delete_product (state, msg) {
+    state.deleteProductMsg = msg
   }
 }
 
 export const actions = {
   async login ({ commit }, data) {
     const res = await this.$axios.post(`${baseUrl}/users/login`, data, { withCredentials: true })
-
     if (res.data.error) {
       return commit('login_error', res.data.msg)
     }
-
     commit('login_success')
   },
   async getProducts ({ commit }) {
@@ -67,7 +73,6 @@ export const actions = {
     commit('get_single_product', res.data.product[0])
   },
   async addNewProduct ({ commit }, data) {
-    console.log(data)
     const res = await this.$axios.post(`${baseUrl}/products/`, data, { withCredentials: true })
     if (res.data.error) {
       return commit('add_product_error', res.data.msg)
@@ -80,5 +85,12 @@ export const actions = {
       return commit('get_single_product_error', res.data.msg)
     }
     commit('get_single_product', data)
+  },
+  async deleteProduct ({ commit }, id) {
+    const res = await this.$axios.delete(`${baseUrl}/products/delete/${id}`, { withCredentials: true })
+    if (res.data.error) {
+      return commit('delete_product_error', res.data.msg)
+    }
+    commit('delete_product', 'Product deleted successfully')
   }
 }

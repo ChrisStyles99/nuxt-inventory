@@ -22,7 +22,7 @@
       <button class="p-3 bg-red-600 text-lg text-white ml-2" @click="activeModal = true">
         Delete Product
       </button>
-      <DeleteModal v-if="activeModal" @hide-modal="activeModal = false" />
+      <DeleteModal v-if="activeModal" @delete-product="deleteThisProduct" @hide-modal="activeModal = false" />
     </div>
   </div>
 </template>
@@ -46,12 +46,13 @@ export default {
   },
   created () {
     this.$store.dispatch('getSingleProduct', this.$route.params.id)
+  },
+  methods: {
+    deleteThisProduct () {
+      this.$store.dispatch('deleteProduct', this.$route.params.id)
+      this.$router.push('/')
+    }
   }
-  // methods: {
-  //   hideModal () {
-  //     this.activeModal = false
-  //   }
-  // }
 }
 </script>
 

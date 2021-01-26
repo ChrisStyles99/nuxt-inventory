@@ -13,6 +13,12 @@
       <p class="text-center text-3xl text-green-500">
         {{ addProductMsg }}
       </p>
+      <p class="text-center text-3xl text-red-500">
+        {{ deleteProductError }}
+      </p>
+      <p class="text-center text-3xl text-green-500">
+        {{ deleteProductMsg }}
+      </p>
       <div class="grid grid-cols-4 gap-1 mt-2">
         <ItemCard v-for="product in products" :key="product.id" :product="product" />
       </div>
@@ -40,6 +46,12 @@ export default {
     },
     addProductMsg () {
       return this.$store.state.addProductMsg
+    },
+    deleteProductError () {
+      return this.$store.state.deleteProductError
+    },
+    deleteProductMsg () {
+      return this.$store.state.deleteProductMsg
     }
   },
   created () {
