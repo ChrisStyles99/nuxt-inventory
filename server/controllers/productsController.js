@@ -21,10 +21,10 @@ productsController.getSingleProduct = (req, res) => {
 }
 
 productsController.addProduct = (req, res) => {
-  const {name, description, quantity, url} = req.body;
+  const {name, description, quantity, image_url} = req.body;
   const quantityInt = parseInt(quantity);
   const category = 'To be rated';
-  connection.execute('INSERT INTO products (name, description, quantity, image_url, category) VALUES (?, ?, ?, ?, ?)', [name, description, quantityInt, url, category], (err, result) => {
+  connection.execute('INSERT INTO products (name, description, quantity, image_url, category) VALUES (?, ?, ?, ?, ?)', [name, description, quantityInt, image_url, category], (err, result) => {
     if(err) return res.json({error: true, msg: err});
 
     res.json({error: false, msg: 'Added new product'});

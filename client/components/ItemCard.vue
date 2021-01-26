@@ -1,7 +1,7 @@
 <template>
   <div class="card rounded shadow-2xl mx-auto p-2 border-2 border-gray-600 bg-white">
     <div class="card-img w-full">
-      <img class="object-cover" :src="product.image_url" alt="Image">
+      <img class="object-cover w-full h-32 sm:h-48 md:h-64" :src="product.image_url" alt="Image">
     </div>
     <div class="card-content">
       <h1 class="text-xl">

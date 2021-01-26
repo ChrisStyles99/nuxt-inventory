@@ -5,7 +5,9 @@ export const state = () => ({
   product: {},
   loginError: null,
   productsError: null,
-  singleProductError: null
+  singleProductError: null,
+  addProductError: null,
+  addProductMsg: null
 })
 
 export const getters = {
@@ -31,6 +33,12 @@ export const mutations = {
   },
   get_single_product (state, product) {
     state.product = product
+  },
+  add_product_error (state, data) {
+    state.addProductError = data
+  },
+  add_product (state, msg) {
+    state.addProductMsg = msg
   }
 }
 
@@ -58,8 +66,15 @@ export const actions = {
     }
     commit('get_single_product', res.data.product[0])
   },
-  async updateProduct ({ commit }, { id, data }) {
+  async addNewProduct ({ commit }, data) {
     console.log(data)
+    const res = await this.$axios.post(`${baseUrl}/products/`, data, { withCredentials: true })
+    if (res.data.error) {
+      return commit('add_product_error', res.data.msg)
+    }
+    commit('add_product', 'Added new product')
+  },
+  async updateProduct ({ commit }, { id, data }) {
     const res = await this.$axios.put(`${baseUrl}/products/edit/${id}`, data, { withCredentials: true })
     if (res.data.error) {
       return commit('get_single_product_error', res.data.msg)

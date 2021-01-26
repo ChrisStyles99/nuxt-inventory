@@ -4,7 +4,15 @@
       Inventory items
     </h1>
     <client-only>
-      <p>{{ productsError }}</p>
+      <p class="text-center text-3xl text-red-500">
+        {{ productsError }}
+      </p>
+      <p class="text-center text-3xl text-red-500">
+        {{ addProductError }}
+      </p>
+      <p class="text-center text-3xl text-green-500">
+        {{ addProductMsg }}
+      </p>
       <div class="grid grid-cols-4 gap-1 mt-2">
         <ItemCard v-for="product in products" :key="product.id" :product="product" />
       </div>
@@ -26,6 +34,12 @@ export default {
     },
     productsError () {
       return this.$store.state.productsError
+    },
+    addProductError () {
+      return this.$store.state.addProductError
+    },
+    addProductMsg () {
+      return this.$store.state.addProductMsg
     }
   },
   created () {
